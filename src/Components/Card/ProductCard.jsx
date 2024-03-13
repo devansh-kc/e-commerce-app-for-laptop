@@ -1,26 +1,24 @@
 import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Card({ id,title, image, description, price }) {
+function Card({ id,name, image, price }) {
 
   
   return (
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
-        <img src={image} alt={title} className="object-cover w-full h-full" />
+        <img src={image} alt={name} className="object-cover w-full h-full" />
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
           <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-            {title}
+            {name}
           </p>
           <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
             {price}
           </p>
         </div>
-        <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
-          {description.length>100 ?description.slice(0,155)+"...":description}
-        </p>
+    
       </div>
       <div className="p-6 pt-0">
         <Link to={`/${id}`}

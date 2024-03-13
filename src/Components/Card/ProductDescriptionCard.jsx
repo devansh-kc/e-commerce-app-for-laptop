@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import Items from "../../assets/Data";
 
-function ProductDescription() {
-    const {id} = useParams();
-    // if(id === Items.id)
-    return (
+function ProductDescriptionCard({ data }) {
+  const Price = data.price.map((i) => i);
+  return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-4">
         <nav className="flex">
           <ol role="list" className="flex items-center">
             <li className="text-left">
-              <div className="-m-1">
+              <div className="m-1">
                 <Link
                   to="/"
                   className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
@@ -47,8 +44,7 @@ function ProductDescription() {
                     className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                     aria-current="page"
                   >
-                    {" "}
-                    Coffee{" "}
+                    {data.name}
                   </a>
                 </div>
               </div>
@@ -63,8 +59,8 @@ function ProductDescription() {
                 <div className="max-w-xl overflow-hidden rounded-lg">
                   <img
                     className="h-full w-full max-w-full object-cover"
-                    src={Items.image}
-                    alt={Items.title}
+                    src={data.image}
+                    alt={data.title}
                   />
                 </div>
               </div>
@@ -77,8 +73,8 @@ function ProductDescription() {
                   >
                     <img
                       className="h-full w-full object-cover"
-                      src="/images/JHxMnVrtPMdcNU1s_7g7f.png"
-                      alt=""
+                      src={data.image}
+                      alt={data.title}
                     />
                   </button>
                   <button
@@ -87,8 +83,8 @@ function ProductDescription() {
                   >
                     <img
                       className="h-full w-full object-cover"
-                      src="/images/JHxMnVrtPMdcNU1s_7g7f.png"
-                      alt=""
+                      src={data.image}
+                      alt={data.title}
                     />
                   </button>
                   <button
@@ -97,8 +93,8 @@ function ProductDescription() {
                   >
                     <img
                       className="h-full w-full object-cover"
-                      src="/images/JHxMnVrtPMdcNU1s_7g7f.png"
-                      alt=""
+                      src={data.image}
+                      alt={data.title}
                     />
                   </button>
                 </div>
@@ -108,7 +104,7 @@ function ProductDescription() {
 
           <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
             <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-              Afro-Brazillian Coffee
+              {data.name}
             </h1>
 
             <div className="mt-5 flex items-center">
@@ -174,90 +170,33 @@ function ProductDescription() {
               </p>
             </div>
 
-            <h2 className="mt-8 text-base text-gray-900">Coffee Type</h2>
-            <div className="mt-3 flex select-none flex-wrap items-center gap-1">
-              <label className="">
-                <input
-                  type="radio"
-                  name="type"
-                  value="Powder"
-                  className="peer sr-only"
-                  checked
-                />
-                <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  Powder
-                </p>
-              </label>
-              <label className="">
-                <input
-                  type="radio"
-                  name="type"
-                  value="Whole Bean"
-                  className="peer sr-only"
-                />
-                <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  Whole Bean
-                </p>
-              </label>
-              <label className="">
-                <input
-                  type="radio"
-                  name="type"
-                  value="Groud"
-                  className="peer sr-only"
-                />
-                <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  Groud
-                </p>
-              </label>
-            </div>
+            <h2 className="mt-8 text-base text-gray-900">{data.name}</h2>
 
-            <h2 className="mt-8 text-base text-gray-900">
-              Choose subscription
-            </h2>
+            <h2 className="mt-8 text-base text-gray-900">Choose Product</h2>
             <div className="mt-3 flex select-none flex-wrap items-center gap-1">
-              <label className="">
-                <input
-                  type="radio"
-                  name="subscription"
-                  value="4 Months"
-                  className="peer sr-only"
-                />
-                <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  4 Months
-                </p>
-                <span className="mt-1 block text-center text-xs">$80/mo</span>
-              </label>
-              <label className="">
-                <input
-                  type="radio"
-                  name="subscription"
-                  value="8 Months"
-                  className="peer sr-only"
-                  checked
-                />
-                <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  8 Months
-                </p>
-                <span className="mt-1 block text-center text-xs">$60/mo</span>
-              </label>
-              <label className="">
-                <input
-                  type="radio"
-                  name="subscription"
-                  value="12 Months"
-                  className="peer sr-only"
-                />
-                <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  12 Months
-                </p>
-                <span className="mt-1 block text-center text-xs">$40/mo</span>
-              </label>
+              {data.config.map((i) => {
+                return (
+                  <label className="">
+                    <input
+                      type="radio"
+                      name="subscription"
+                      value="4 Months"
+                      className="peer sr-only"
+                    />
+                    <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
+                      {i}
+                    </p>
+                    <span className="mt-1 block text-center text-xs">
+                      ${Price}
+                    </span>
+                  </label>
+                );
+              })}
             </div>
 
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
-                <h1 className="text-3xl font-bold">$60.50</h1>
+                <h1 className="text-3xl font-bold"> $60.50</h1>
                 <span className="text-base">/month</span>
               </div>
 
@@ -351,22 +290,9 @@ function ProductDescription() {
             </div>
 
             <div className="mt-8 flow-root sm:mt-12">
-              <h1 className="text-3xl font-bold">Delivered To Your Door</h1>
+              <h1 className="text-3xl font-bold">Description</h1>
               <p className="mt-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                accusantium nesciunt fuga.
-              </p>
-              <h1 className="mt-8 text-3xl font-bold">
-                From the Fine Farms of Brazil
-              </h1>
-              <p className="mt-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                numquam enim facere.
-              </p>
-              <p className="mt-4">
-                Amet consectetur adipisicing elit. Optio numquam enim facere.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore
-                rerum nostrum eius facere, ad neque.
+                {data.description}
               </p>
             </div>
           </div>
@@ -376,4 +302,4 @@ function ProductDescription() {
   );
 }
 
-export default ProductDescription;
+export default ProductDescriptionCard;

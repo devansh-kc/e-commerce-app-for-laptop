@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Footer } from "./Components/index";
+import { Header } from "./Components/index";
 import { Outlet } from "react-router-dom";
 const App = () => {
   return (
@@ -8,7 +8,6 @@ const App = () => {
       <main>
         <Outlet />
       </main>
-      <Footer />
     </div>
   );
 };

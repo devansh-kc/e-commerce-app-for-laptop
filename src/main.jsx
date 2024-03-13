@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Product } from "./Components/index.js";
-import ProductDescription from "./Components/Card/ProductDescription.jsx";
+import ProductDescriptionPage from "./Pages/ProductDescriptionPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/:id",
-        element:<ProductDescription/>
+        element:<ProductDescriptionPage/>
       }
     ],
   },

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function ProductDescriptionCard({ data }) {
-  const Price = data.price.map((i) => i);
   return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-4">
@@ -57,46 +56,32 @@ function ProductDescriptionCard({ data }) {
             <div className="lg:flex lg:items-start">
               <div className="lg:order-2 lg:ml-5">
                 <div className="max-w-xl overflow-hidden rounded-lg">
-                  <img
-                    className="h-full w-full max-w-full object-cover"
-                    src={data.image}
-                    alt={data.title}
-                  />
+                  {
+                    <img
+                      className="h-full w-full max-w-full object-cover"
+                      src={data.image[0]}
+                      alt={data.title}
+                    />
+                  }
                 </div>
               </div>
 
               <div className="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
                 <div className="flex flex-row items-start lg:flex-col">
-                  <button
-                    type="button"
-                    className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center"
-                  >
-                    <img
-                      className="h-full w-full object-cover"
-                      src={data.image}
-                      alt={data.title}
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center"
-                  >
-                    <img
-                      className="h-full w-full object-cover"
-                      src={data.image}
-                      alt={data.title}
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center"
-                  >
-                    <img
-                      className="h-full w-full object-cover"
-                      src={data.image}
-                      alt={data.title}
-                    />
-                  </button>
+                  {data.image.map((el) => {
+                    return (
+                      <button
+                        type="button"
+                        className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center"
+                      >
+                        <img
+                          className="h-full w-full object-cover"
+                          src={el}
+                          alt={data.title}
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -174,7 +159,7 @@ function ProductDescriptionCard({ data }) {
 
             <h2 className="mt-8 text-base text-gray-900">Choose Product</h2>
             <div className="mt-3 flex select-none flex-wrap items-center gap-1">
-              {data.config.map((i) => {
+              {data.config.map((el) => {
                 return (
                   <label className="">
                     <input
@@ -184,11 +169,9 @@ function ProductDescriptionCard({ data }) {
                       className="peer sr-only"
                     />
                     <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                      {i}
+                      {el}
                     </p>
-                    <span className="mt-1 block text-center text-xs">
-                      ${Price}
-                    </span>
+                    <span className="mt-1 block text-center text-xs"></span>
                   </label>
                 );
               })}
@@ -291,9 +274,7 @@ function ProductDescriptionCard({ data }) {
 
             <div className="mt-8 flow-root sm:mt-12">
               <h1 className="text-3xl font-bold">Description</h1>
-              <p className="mt-4">
-                {data.description}
-              </p>
+              <p className="mt-4">{data.description}</p>
             </div>
           </div>
         </div>

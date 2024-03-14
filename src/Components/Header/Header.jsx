@@ -2,15 +2,16 @@
 import { useState } from "react"
 import React from 'react'
 import { Menu, X } from 'lucide-react'
+import { Link } from "react-router-dom"
 
 const menuItems = [
   {
     name: 'Explore Products',
-    href: '#',
+    to: '/product',
   },
   {
     name: 'Cart',
-    href: '#',
+    to: '/cart',
   },
 ]
 
@@ -27,18 +28,18 @@ const menuItems = [
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
          
-          <span className="font-bold">E-commerce app</span>
+          <span className="font-bold"><Link to ="/">E-commerce app</Link></span>
         </div>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <a
-                  href={item.href}
+                <Link
+                  to={item.to}
                   className="text-sm font-semibold text-gray-800 hover:text-gray-900"
                 >
                   {item.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -83,15 +84,15 @@ const menuItems = [
                 <div className="mt-6">
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.to}
                         className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                       >
                         <span className="ml-3 text-base font-medium text-gray-900">
                           {item.name}
                         </span>
-                      </a>
+                      </Link>
                     ))}
                   </nav>
                 </div>

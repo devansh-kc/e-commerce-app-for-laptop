@@ -6,30 +6,35 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProductDescriptionPage from "./Pages/ProductDescriptionPage.jsx";
 import CartPage from "./Pages/CartPage.jsx";
 import Product from "./Pages/Product.jsx";
-// TODO : routing set kar ni hai , cart page bana na hai , hero component banana hai 
-// 1. routing , i> kitne routes chaiye . i.1 product , hero page with carosoule , cart , and payment details page  , lgoin aur sign up page 
+import Hero from "./Pages/Hero.jsx";
+import { store } from "./store/store.js";
+import { Provider } from "react-redux";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <Hero />,
+      },
+      {
         path: "/product",
         element: <Product />,
       },
       {
-        path:"/product/:id",
-        element:<ProductDescriptionPage/>
+        path: "/product/:id",
+        element: <ProductDescriptionPage />,
       },
       {
-        path:"/cart",
-        element:<CartPage/>
-      }
+        path: "/cart",
+        element: <CartPage />,
+      },
     ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </Provider>
 );

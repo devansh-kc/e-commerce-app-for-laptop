@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/CartSlice";
 
 function ProductDescriptionCard({ data }) {
+  const dispatch = useDispatch();
   return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-4">
@@ -23,13 +26,13 @@ function ProductDescriptionCard({ data }) {
               <div className="flex items-center">
                 <span className="mx-2 text-gray-400">/</span>
                 <div className="-m-1">
-                  <a
-                    href="#"
+                  <Link
+                    to="/product"
                     className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                   >
                     {" "}
                     Products{" "}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </li>

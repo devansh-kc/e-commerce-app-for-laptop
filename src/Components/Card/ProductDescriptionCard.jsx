@@ -5,6 +5,11 @@ import { addToCart } from "../../features/CartSlice";
 
 function ProductDescriptionCard({ data }) {
   const dispatch = useDispatch();
+
+  function add(e) {
+    dispatch(addToCart(e));
+  }
+
   return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-4">
@@ -73,16 +78,18 @@ function ProductDescriptionCard({ data }) {
                 <div className="flex flex-row items-start lg:flex-col">
                   {data.image.map((el) => {
                     return (
-                      <button
-                        type="button"
-                        className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center"
-                      >
-                        <img
-                          className="h-full w-full object-cover"
-                          src={el}
-                          alt={data.title}
-                        />
-                      </button>
+                      <div>
+                        <button
+                          type="button"
+                          className="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center"
+                        >
+                          <img
+                            className="h-full w-full object-cover"
+                            src={el}
+                            alt={data.title}
+                          />
+                        </button>
+                      </div>
                     );
                   })}
                 </div>
@@ -160,33 +167,36 @@ function ProductDescriptionCard({ data }) {
 
             <h2 className="mt-8 text-base text-gray-900">{data.name}</h2>
 
-            <h2 className="mt-8 text-base text-gray-900">Choose Product</h2>
+            <h2 className="mt-8 text-base text-gray-900">Specifications</h2>
             <div className="mt-3 flex select-none flex-wrap items-center gap-1">
               {data.config.map((el) => {
                 return (
-                  <label className="">
-                    <input
-                      type="radio"
-                      name="subscription"
-                      value="4 Months"
-                      className="peer sr-only"
-                    />
-                    <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                      {el}
-                    </p>
-                    <span className="mt-1 block text-center text-xs"></span>
-                  </label>
+                  <div>
+                    <label className="">
+                      <input
+                        type="radio"
+                        name="subscription"
+                        value="4 Months"
+                        className="peer sr-only"
+                      />
+                      <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
+                        {el}
+                      </p>
+                    </label>
+                  </div>
                 );
               })}
             </div>
 
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
-                <h1 className="text-3xl font-bold"> $60.50</h1>
-                <span className="text-base">/month</span>
+                <h1 className="text-3xl font-bold"> ${data.price}</h1>
               </div>
 
               <button
+                onClick={() => {
+                  add(data);
+                }}
                 type="button"
                 className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
               >

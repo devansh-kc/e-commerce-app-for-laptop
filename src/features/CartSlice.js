@@ -16,9 +16,14 @@ const CartSlice = createSlice({
         item.id === action.payload ? { ...item, qty: item.qty + 1 } : item
       );
     },
-    // decreaseQuantity: () => {},
+    decreaseQuantity: (state, action) => {
+      return state.map((item) =>
+        item.id === action.payload ? { ...item, qty: item.qty - 1 } : item
+      );
+    },
   },
 });
 
 export default CartSlice.reducer;
-export const { addToCart, removeToCart,increaseQuantity } = CartSlice.actions;
+export const { addToCart, removeToCart, increaseQuantity, decreaseQuantity } =
+  CartSlice.actions;

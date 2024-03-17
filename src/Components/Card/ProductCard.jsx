@@ -1,32 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Card({ id,name, image, price }) {
-
-  
+function Card({ id, name, image, price }) {
   return (
-    <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96">
-      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
-        <img src={image} alt={name} className="object-cover w-full h-full" />
-      </div>
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-2">
-          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-            {name}
+    <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-4">
+      <div className="relative aspect-[16/9]  w-auto rounded-md md:aspect-auto md:h-[400px]">
+        <img
+          src={image}
+          alt={name}
+          className="z-0 h-full w-full rounded-md object-cover"
+        />
+        <div className="absolute inset-0 rounded-md bg-gradient-to-t from-gray-900 to-transparent"></div>
+        <div className="absolute bottom-4 left-4 text-left">
+          <h1 className="text-lg font-semibold text-white">{name}</h1>
+          <p className="mt-2 text-sm text-gray-300">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+            debitis?
           </p>
-          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-            {price}
-          </p>
+          <Link  to={`/product/${id}`}className="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
+            Learn More &rarr;
+          </Link>
         </div>
-    
-      </div>
-      <div className="p-6 pt-0">
-        <Link to={`/product/${id}`}
-          className="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 focus:opacity-[0.85] active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-          type="button"
-        >
-          Discover More
-        </Link>
       </div>
     </div>
   );

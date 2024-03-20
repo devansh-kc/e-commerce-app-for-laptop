@@ -57,12 +57,7 @@ const CartPage = () => {
                   <dt className="text-sm text-gray-800">Price ({items} items)</dt>
                   <dd className="text-sm font-medium text-gray-900">{total}</dd>
                 </div>
-                <div className="flex items-center justify-between pt-4">
-                  <dt className="flex items-center text-sm text-gray-800">
-                    <span>Discount</span>
-                  </dt>
-                 
-                </div>
+                
                 <div className="flex items-center justify-between py-4">
                   <dt className="flex text-sm text-gray-800">
                     <span>Delivery Charges</span>

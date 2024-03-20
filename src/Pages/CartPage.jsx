@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Cart } from "../Components";
 import { useSelector } from "react-redux";
+import Items from "../assets/Data";
 
 const CartPage = () => {
   const cart = useSelector((state) => state.cart);
-  const [total, setTotal] = useState();
+  const [total, setTotal] = useState(0);
+  const [items, setTotalItems] = useState(0);
   useEffect(() => {
-    setTotal(cart.reduce((acc, curr) => acc + curr * cart.qty, 0));
+    setTotal(cart.reduce((acc, curr) => acc + curr.price * curr.qty, 0));
+    setTotalItems(cart.reduce((acc, curr) => acc + curr.qty, 0));
   }, [cart]);
   return (
     <>
@@ -25,9 +28,9 @@ const CartPage = () => {
                   Items in your shopping cart
                 </h2>
                 <ul role="list" className="divide-y divide-gray-200">
-                {cart.map((item) => {
-                  return <Cart products={item} key={item.id} />;
-                })}
+                  {cart.map((item) => {
+                    return <Cart products={item} key={item.id} />;
+                  })}
                 </ul>
               </section>
             </form>
@@ -51,18 +54,14 @@ const CartPage = () => {
             <div>
               <dl className=" space-y-1 px-2 py-4">
                 <div className="flex items-center justify-between">
-                  <dt className="text-sm text-gray-800">Price </dt>
-                  <dd className="text-sm font-medium text-gray-900">
-                    {cart.price}*{cart.length}
-                  </dd>
+                  <dt className="text-sm text-gray-800">Price ({items} items)</dt>
+                  <dd className="text-sm font-medium text-gray-900">{total}</dd>
                 </div>
                 <div className="flex items-center justify-between pt-4">
                   <dt className="flex items-center text-sm text-gray-800">
                     <span>Discount</span>
                   </dt>
-                  <dd className="text-sm font-medium text-green-700">
-                    - ₹ 3,431
-                  </dd>
+                 
                 </div>
                 <div className="flex items-center justify-between py-4">
                   <dt className="flex text-sm text-gray-800">
@@ -79,9 +78,6 @@ const CartPage = () => {
                   </dd>
                 </div>
               </dl>
-              <div className="px-2 pb-4 font-medium text-green-700">
-                You will save ₹ 3,431 on this order
-              </div>
             </div>
           </section>
         </form>
